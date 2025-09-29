@@ -1,5 +1,5 @@
 # TOC
-Regular expression into its equivalent DFA
+1. Program to convert a given regular expression into its equivalent DFA
 
 ```bash
 #include <stdio.h>
@@ -178,4 +178,61 @@ int main() {
 }
 ```
 <img width="804" height="427" alt="image" src="https://github.com/user-attachments/assets/6261f257-bd06-4a45-aa91-af0d32f8f07d" />
+
+2. Program that converts the following RE into DFA and validates strings
+
+   ```bash
+   #include <stdio.h>
+#include <string.h>
+
+// DFA states
+// q0 = 0, q1 = 1, q2 = 2
+int transition(int state, char symbol) {
+    switch (state) {
+        case 0: // q0
+            if (symbol == '0') return 1; // go to q1
+            else if (symbol == '1') return 0; // stay in q0
+            break;
+        case 1: // q1 (last was 0)
+            if (symbol == '0') return 1; // stay in q1
+            else if (symbol == '1') return 2; // 0 followed by 1 -> q2
+            break;
+        case 2: // q2 (ends with 01)
+            if (symbol == '0') return 1; // could start new pattern
+            else if (symbol == '1') return 0; // back to q0
+            break;
+    }
+    return -1; // invalid
+}
+
+int isAccepted(const char *input) {
+    int state = 0; // start state
+    for (int i = 0; i < (int)strlen(input); i++) {
+        if (input[i] != '0' && input[i] != '1') return 0; // invalid char
+        state = transition(state, input[i]);
+    }
+    // Final state is q2
+    return (state == 2);
+}
+
+int main() {
+    const char *testStrings[] = {"1101", "111", "0001"};
+    int count = sizeof(testStrings) / sizeof(testStrings[0]);
+
+    printf("Regular Expression: (0|1)*01\n");
+    printf("Testing strings:\n\n");
+
+    for (int i = 0; i < count; i++) {
+        printf("String: %-6s --> %s\n",
+               testStrings[i],
+               isAccepted(testStrings[i]) ? "Accepted" : "Rejected");
+    }
+
+    return 0;
+}
+```
+<img width="824" height="365" alt="image" src="https://github.com/user-attachments/assets/2f7faee3-2ba2-4bd2-bdf7-f2fa6a677508" />
+
+
+
 
