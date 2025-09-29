@@ -177,3 +177,5 @@ int main() {
     return 0;
 }
 ```
+<img width="804" height="427" alt="image" src="https://github.com/user-attachments/assets/6261f257-bd06-4a45-aa91-af0d32f8f07d" />
+
