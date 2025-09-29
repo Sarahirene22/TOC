@@ -181,7 +181,7 @@ int main() {
 
 2. Program that converts the following RE into DFA and validates strings
 
-   ```bash
+```bash
    #include <stdio.h>
 #include <string.h>
 
