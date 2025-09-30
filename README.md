@@ -4,7 +4,7 @@
 1. a program that detects redundant computations, dead code, and strength reduction.
 
 ```bash
-   #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -82,7 +82,7 @@ int main() {
 2. a simple code generator that translates arithmetic expressions into target assembly for a stack machine.
 
 ```bash
-   #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
